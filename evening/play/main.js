@@ -158,8 +158,8 @@ async function start(soundEnabled) {
     }
 
     const [fragShaderSource, vertShaderSource] = await Promise.all([
-        fetch("play/ball.frag").then(res => res.text()),
-        fetch("play/ball.vert").then(res => res.text())
+        fetch("evening/play/ball.frag").then(res => res.text()),
+        fetch("evening/play/ball.vert").then(res => res.text())
     ]);
     var positionBuffer = glContext.createBuffer();
 
