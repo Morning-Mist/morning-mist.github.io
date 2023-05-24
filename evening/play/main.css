@@ -1,0 +1,135 @@
+* {
+    font-family: calibri;
+    color: #444444;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    background-image: url("background.png");
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+#glCanvas {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: absolute;
+}
+
+.focusButton {
+    right: 1.5%;
+    top: 2%;
+    position: absolute;
+    background-color: #cccccc;
+    width: 120px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.focusButton:hover {
+    background-color: #888888;
+    color: #222222;
+}
+
+.configMenu {
+    transition-duration: 0.4s;
+}
+
+.focusButtonHidden {
+    opacity: 0.0;
+    background-color: #ffffff;
+    color: #ffffff;
+}
+
+.focusButtonHidden:hover {
+    opacity: 0.75;
+    background-color: #cccccc;
+    color: #eeeeee;
+}
+
+#soundToggle {
+    position: absolute;
+    right: 1.5%;
+    top: calc(2% + 55px);
+}
+
+#soundToggleText {
+    float: left;
+    margin-top: 6px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+#soundToggleCheckbox {
+    float: right;
+}
+
+#fileLink {
+    position: absolute;
+    right: calc(1.5% + 70px + 24px);
+    top: calc(2% + 55px + 26px + 20px);
+    font-size: 20px;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.4s, opacity 0.4s linear;
+}
+
+/* checkbox by Matt Smith on https://getcssscan.com */
+.checkbox-wrapper-22 .switch {
+display: inline-block;
+height: 34px;
+position: relative;
+width: 60px;
+}
+
+.checkbox-wrapper-22 .switch input {
+display:none;
+}
+
+.checkbox-wrapper-22 .slider {
+background-color: #ccc;
+bottom: 0;
+cursor: pointer;
+left: 0;
+position: absolute;
+right: 0;
+top: 0;
+transition: .4s;
+}
+
+.checkbox-wrapper-22 .slider:before {
+background-color: #fff;
+bottom: 4px;
+content: "";
+height: 26px;
+left: 4px;
+position: absolute;
+transition: .4s;
+width: 26px;
+}
+
+.checkbox-wrapper-22 input:checked + .slider {
+background-color: #66bb6a;
+}
+
+.checkbox-wrapper-22 input:checked + .slider:before {
+transform: translateX(26px);
+}
+
+.checkbox-wrapper-22 .slider.round {
+border-radius: 34px;
+}
+
+.checkbox-wrapper-22 .slider.round:before {
+border-radius: 50%;
+}
