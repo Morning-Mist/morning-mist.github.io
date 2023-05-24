@@ -113,7 +113,7 @@ function playBounce() {
 
 // play the bounce once per loop...
 function setBounceSoundLoop() {
-    setInterval(playBounce, cycle_duration * 1000 - 100);
+    setInterval(playBounce, cycle_duration * 1000);
 }
 
 // starting right when the ball first hits the ground
