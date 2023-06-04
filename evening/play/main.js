@@ -122,7 +122,7 @@ function setBounceSoundLoop() {
 // starting right when the ball first hits the ground
 function startBounceSoundLoop() {
     bounce.volume = 0.4;
-    setTimeout(setBounceSoundLoop, first_cycle_duration * 1000 - 100);
+    setTimeout(setBounceSoundLoop, first_cycle_duration * 1000);
 }
 
 function toggleSound() {
