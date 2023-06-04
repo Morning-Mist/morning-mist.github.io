@@ -129,6 +129,11 @@ function toggleSound() {
     playSound = !playSound;
 }
 
+// MOBILE PERFORMANCE UTILITIES
+function clickCanvas() {
+    document.getElementById("glCanvas").click();
+}
+
 // CONFIG UTILITIES
 var configHidden = false;
 
@@ -153,7 +158,7 @@ function toggleConfigHidden() {
 }
 
 // MAIN FUNCTION
-async function start(soundEnabled) {
+async function start() {
     const canvas = document.getElementById("glCanvas");
     const glContext = canvas.getContext("webgl2", {
         powerPreference: "high-performance"   
@@ -205,12 +210,11 @@ async function start(soundEnabled) {
     }
     
     g_performanceNowOnStart = performance.now();
-    if(soundEnabled) {
-        startBounceSoundLoop();
-    }
+    startBounceSoundLoop();
+    setTimeout(clickCanvas, 5000); // click canvas every 5 seconds to prevent lag on mobile
     requestAnimationFrame(render);
 }
 
 document.getElementById("checkbox").addEventListener("click", toggleSound);
 
-start(true);
+start();
