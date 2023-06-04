@@ -176,6 +176,11 @@ async function start(soundEnabled) {
     const glExternalTime = glContext.getUniformLocation(glProgram, "ext_time");
     const glExternalRes = glContext.getUniformLocation(glProgram, "ext_res");
 
+    glContext.bindBuffer(glContext.ARRAY_BUFFER, positionBuffer);
+    glContext.vertexAttribPointer(extPosition, 2, glContext.FLOAT, false, 0, 0);
+    glContext.enableVertexAttribArray(extPosition);
+    glContext.useProgram(glProgram);
+
     function render() {
         glContext.clearColor(1.0, 1.0, 1.0, 1.0);
         glContext.clear(glContext.COLOR_BUFFER_BIT);
@@ -184,13 +189,9 @@ async function start(soundEnabled) {
         canvas.width = window.innerWidth;
         glContext.viewport(0, 0, canvas.width, canvas.height);
 
-        glContext.useProgram(glProgram);
-        glContext.uniform1f(glExternalTime, (performance.now() - g_performanceNowOnStart) / 1000.0);
+        glContext.uniform1f(glExternalTime, (performance.now() - performanceNowAtStart) / 1000.0);
         glContext.uniform2f(glExternalRes, canvas.width, canvas.height);
 
-        glContext.bindBuffer(glContext.ARRAY_BUFFER, positionBuffer);
-        glContext.enableVertexAttribArray(extPosition);
-        glContext.vertexAttribPointer(extPosition, 2, glContext.FLOAT, false, 0, 0);
         glContext.drawArrays(glContext.TRIANGLES, 0, 6);
 
         requestAnimationFrame(render);
