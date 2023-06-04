@@ -189,7 +189,7 @@ async function start(soundEnabled) {
         canvas.width = window.innerWidth;
         glContext.viewport(0, 0, canvas.width, canvas.height);
 
-        glContext.uniform1f(glExternalTime, (performance.now() - performanceNowAtStart) / 1000.0);
+        glContext.uniform1f(glExternalTime, (performance.now() - g_performanceNowOnStart) / 1000.0);
         glContext.uniform2f(glExternalRes, canvas.width, canvas.height);
 
         glContext.drawArrays(glContext.TRIANGLES, 0, 6);
