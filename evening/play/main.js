@@ -18,6 +18,9 @@ const max_dist_from_shine = Math.sqrt(1.0 - shine_offset);
 
 const bounce = new Audio("evening/play/bounce.mp3");
 
+// dubious hack to ensure the animation and audio are synced on startup
+var performanceNowOnStart = -1;
+
 // WEBGL UTILS
 function compileShader(glContext, shaderType, shaderSource) {
     const shader = glContext.createShader(shaderType);
@@ -118,6 +121,7 @@ function setBounceSoundLoop() {
 
 // starting right when the ball first hits the ground
 function startBounceSoundLoop() {
+    bounce.volume = 0.4;
     setTimeout(setBounceSoundLoop, first_cycle_duration * 1000 - 100);
 }
 
@@ -179,7 +183,7 @@ async function start(soundEnabled) {
         glContext.viewport(0, 0, canvas.width, canvas.height);
 
         glContext.useProgram(glProgram);
-        glContext.uniform1f(glExternalTime, performance.now() / 1000.0);
+        glContext.uniform1f(glExternalTime, (performance.now() - performanceNowOnStart) / 1000.0);
         glContext.uniform2f(glExternalRes, canvas.width, canvas.height);
 
         glContext.bindBuffer(glContext.ARRAY_BUFFER, positionBuffer);
@@ -190,6 +194,7 @@ async function start(soundEnabled) {
         requestAnimationFrame(render);
     }
 
+    g_performanceNowOnStart = performance.now();
     if(soundEnabled) {
         startBounceSoundLoop();
     }
