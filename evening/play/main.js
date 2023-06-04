@@ -197,6 +197,13 @@ async function start(soundEnabled) {
         requestAnimationFrame(render);
     }
 
+    if("wakeLock" in navigator) {
+        await navigator.wakeLock.request('screen');
+    }
+    else {
+        console.log("Wake lock not supported. May lag on mobile!")
+    }
+    
     g_performanceNowOnStart = performance.now();
     if(soundEnabled) {
         startBounceSoundLoop();
