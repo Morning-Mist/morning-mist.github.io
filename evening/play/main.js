@@ -19,7 +19,7 @@ const max_dist_from_shine = Math.sqrt(1.0 - shine_offset);
 const bounce = new Audio("evening/play/bounce.mp3");
 
 // dubious hack to ensure the animation and audio are synced on startup
-var performanceNowOnStart = -1;
+var g_performanceNowOnStart = -1;
 
 // WEBGL UTILS
 function compileShader(glContext, shaderType, shaderSource) {
@@ -183,7 +183,7 @@ async function start(soundEnabled) {
         glContext.viewport(0, 0, canvas.width, canvas.height);
 
         glContext.useProgram(glProgram);
-        glContext.uniform1f(glExternalTime, (performance.now() - performanceNowOnStart) / 1000.0);
+        glContext.uniform1f(glExternalTime, (performance.now() - g_performanceNowOnStart) / 1000.0);
         glContext.uniform2f(glExternalRes, canvas.width, canvas.height);
 
         glContext.bindBuffer(glContext.ARRAY_BUFFER, positionBuffer);
