@@ -11,7 +11,7 @@ uniform vec2 ext_res;
 
 vec2 g_red_hs = vec2(355.0 / 360.0, 0.9);
 
-vec4 g_red = vec4(228.0 / 255.0, 20.0 / 255.0, 34.0 / 255.0, 1.0);
+vec3 g_red = vec3(255.0 / 255.0, 25.0 / 255.0, 45.0 / 255.0);
 vec4 g_white = vec4(0.75, 0.75, 0.75, 1.0);
 
 uniform float ext_ball_radius;
@@ -83,14 +83,6 @@ float get_vertical_position() {
     }
 }
 
-// Color conversion by https://gist.github.com/983/e170a24ae8eba2cd174f
-vec3 hsv2rgb(vec3 c)
-{
-    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
-    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
-    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
-}
-
 void main() {
     // set default color to white
     //fragColor = vec4(1.0);
@@ -120,7 +112,7 @@ void main() {
     vec2 shine_center = circle_center + vec2(ext_shine_offset) * ellipse_radii;
     float shine_point_radius = length((norm_coords - shine_center) / ellipse_radii);
     float brightness = 0.9 - 0.15 * pow(shine_point_radius / ext_max_dist_from_shine, 2.0);
-    fragColor = mix(vec4(hsv2rgb(vec3(g_red_hs, brightness)), 1.0), fragColor, alpha);
+    fragColor = mix(vec4(g_red * vec3(brightness), 1.0), fragColor, alpha);
 
     // apply shine
     alpha = smoothstep(0.0, 0.15, shine_point_radius);
