@@ -155,7 +155,9 @@ function toggleConfigHidden() {
 // MAIN FUNCTION
 async function start(soundEnabled) {
     const canvas = document.getElementById("glCanvas");
-    const glContext = canvas.getContext("webgl2");
+    const glContext = canvas.getContext("webgl2", {
+        powerPreference: "high-performance"   
+    }); // high performance to fix delayed lag on mobile (maybe)
     if(glContext === null) {
         alert("Your browser doesn't support WebGL!");
         return;
