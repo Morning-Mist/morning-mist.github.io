@@ -6,7 +6,7 @@ precision highp float;
 
 out vec4 fragColor;
 
-uniform float ext_time;
+uniform highp float ext_time;
 uniform vec2 ext_res;
 
 vec2 g_red_hs = vec2(355.0 / 360.0, 0.9);
